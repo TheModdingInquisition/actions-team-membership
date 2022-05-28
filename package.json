@@ -10,7 +10,6 @@
     "type": "git",
     "url": "git+https://github.com/TheModdingInquisition/actions-team-membership.git"
   },
-  "type": "module",
   "keywords": [
     "gh-actions"
   ],

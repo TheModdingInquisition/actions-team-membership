@@ -1,4 +1,4 @@
-import * as core from '@actions/core';
+const core = require('@actions/core');
 import { context, getOctokit } from '@actions/github';
 
 const query = `query($pg: String, $organization: String!, $userLogins: [String!], $username: String!)  {
