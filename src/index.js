@@ -1,6 +1,6 @@
 import * as core from '@actions/core';
 import { context, getOctokit } from '@actions/github';
-import checker from './teamChecker';
+import { getTeams } from './teamChecker';
 
 run();
 
@@ -8,7 +8,7 @@ async function run() {
     const token = core.getInput('token') ? core.getInput('token') : process.env['GITHUB_TOKEN'];
     const username = context.actor;
     const team = core.getInput('team', {required: true});
-    const teams = await checker.getTeams(token, username);
+    const teams = await getTeams(token, username);
 
     core.setOutput('teams', teams);
     const teamPresent = teams.some(te => te.toLocaleLowerCase() == team.toLocaleLowerCase());
