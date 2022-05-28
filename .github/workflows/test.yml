@@ -13,7 +13,7 @@ jobs:
       - id: is_member
         uses: TheModdingInquisition/actions-team-membership@50febd6ab60162a4928889be52f9517a63740f2c
         with:
-          team: 'moddedjanitors'
+          team: 'moddedjanitor'
           token: ${{ secrets.TOKEN }}
       - if: ${{ steps.is_member.outputs.permitted == 'true' }}
         run: echo 'Yes'
