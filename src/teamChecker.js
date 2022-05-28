@@ -5,13 +5,13 @@ const query = `query($pg: String, $organization: String!, $userLogins: [String!]
     user(login: $username) {
         id
     }
-    organization(login: $org) {
+    organization(login: $organization) {
       teams (first:1, userLogins: $userLogins, after: $pg) { 
           nodes {
             name
         }
         pageInfo {
-          hasNextPage1
+          hasNextPage
           endCursor
         }        
       }
