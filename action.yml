@@ -30,5 +30,5 @@ runs:
   using: 'node12'
   main: 'dist/index.js'
 branding:
-  color: 'blue'
-  icon: 'check-square'
+  color: 'red'
+  icon: 'lock'
