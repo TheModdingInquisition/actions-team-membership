@@ -7,7 +7,7 @@ run();
 async function run() {
     const token = core.getInput('token') ? core.getInput('token') : process.env['GITHUB_TOKEN'];
     const username = context.actor;
-    const team = context.getInput('team', {required: true});
+    const team = core.getInput('team', {required: true});
     const teams = await checker.getTeams(token, username);
 
     core.setOutput('teams', teams);
