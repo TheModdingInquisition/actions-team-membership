@@ -6,10 +6,14 @@ jobs:
   test:
     name: "Test"
     runs-on: ubuntu-latest
+    environment: 
+      name: Testing
+      url: https://github.com
     steps:
       - name: is_member
         uses: TheModdingInquisition/actions-team-membership@1e9e46361c750a7a16a412892eca8afbf9ff1eb8
         with:
           team: 'moddedjanitors'
+          token: ${{ secrets.TOKEN }}
       - if: ${{ steps.is_member.outputs.permitted == 'true' }}
         run: echo 'Yes'
