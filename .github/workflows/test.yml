@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: is_member
-        uses: TheModdingInquisition/actions-team-membership@af0c319b8cf8a881a6fc6194f916aaad758589fe
+        uses: TheModdingInquisition/actions-team-membership@042476be89578a94abe395439b2c3ce860e23a09
         with:
           team: 'moddedjanitors'
       - if: ${{ steps.is_member.outputs.permitted == 'true' }}
