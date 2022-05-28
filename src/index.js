@@ -12,7 +12,7 @@ async function run() {
 
         const teams = await getTeams(token, username);
         core.setOutput('teams', teams);
-        core.debug(`User "${username}" is part of the teams: ${teams.join(',')}"`)
+        core.info(`User "${username}" is part of the teams: ${teams.join(',')}"`)
 
         const teamPresent = teams.some(te => te.toLocaleLowerCase() == team);
         core.setOutput('permitted', teamPresent);
