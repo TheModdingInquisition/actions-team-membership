@@ -28,7 +28,7 @@ outputs:
     description: 'Whether a user is part of the team or not'
 runs:
   using: 'node12'
-  main: 'src/index.js'
+  main: 'dist/index.js'
 branding:
   color: 'blue'
   icon: 'check-square'

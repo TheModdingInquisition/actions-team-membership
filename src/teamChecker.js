@@ -1,4 +1,4 @@
-const core = require('@actions/core');
+import * as core from '@actions/core';
 import { context, getOctokit } from '@actions/github';
 
 const query = `query($pg: String, $organization: String!, $userLogins: [String!], $username: String!)  {
@@ -18,7 +18,7 @@ const query = `query($pg: String, $organization: String!, $userLogins: [String!]
     }
 }`
 
-const getTeams = function(token, username) {
+const getTeams = async function(token, username) {
     const octokit = getOctokit(token);
     const org = !core.getInput('organization') ? context.repo : core.getInput('organization');
 
