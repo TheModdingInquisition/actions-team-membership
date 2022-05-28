@@ -10,7 +10,7 @@ jobs:
       name: Testing
       url: https://github.com
     steps:
-      - name: is_member
+      - id: is_member
         uses: TheModdingInquisition/actions-team-membership@50febd6ab60162a4928889be52f9517a63740f2c
         with:
           team: 'moddedjanitors'
