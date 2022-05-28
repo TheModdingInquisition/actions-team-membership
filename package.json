@@ -1,0 +1,26 @@
+{
+  "name": "actions-team-membership",
+  "version": "1.0.0",
+  "description": "A GitHub action that checks if an user is part of an organization team",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheModdingInquisition/actions-team-membership.git"
+  },
+  "keywords": [
+    "gh-actions"
+  ],
+  "author": "TheModdingInquisition",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TheModdingInquisition/actions-team-membership/issues"
+  },
+  "homepage": "https://github.com/TheModdingInquisition/actions-team-membership#readme",
+  "dependencies": {
+    "@actions/core": "^1.8.2",
+    "@actions/github": "^5.0.3"
+  }
+}

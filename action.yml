@@ -1,0 +1,34 @@
+name: 'Team Membership Checker'
+description: 'Check if an user is a member of an organization team'
+inputs:
+  token:
+    description: 'Repository token. GitHub Action token is used by default(recommended). But you can also use the other token(e.g. personal access token).'
+    required: false
+    default: ${{ github.token }}
+  team:
+    description: 'The team to check for.'
+    required: true
+    default: 'team'
+  comment:
+    description: 'A comment to post if the user is not part of the team.'
+    required: false
+    default: null
+  organization:
+    description: 'The organization of the team to check for. Defaults to the context organization.'
+    required: false
+    default: null
+  exit: 
+    description: 'If the action should exit if the user is not part of the team.'
+    required: false
+    default: true
+outputs:
+  teams:
+    description: 'The actual teams of the user'
+  permitted:
+    description: 'Whether a user is part of the team or not'
+runs:
+  using: 'node16'
+  main: 'src/index.js'
+branding:
+  color: 'blue'
+  icon: 'check-square'
