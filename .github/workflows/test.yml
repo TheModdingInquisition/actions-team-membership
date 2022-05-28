@@ -11,7 +11,7 @@ jobs:
       url: https://github.com
     steps:
       - id: is_member
-        uses: TheModdingInquisition/actions-team-membership@50febd6ab60162a4928889be52f9517a63740f2c
+        uses: TheModdingInquisition/actions-team-membership@a69636a92bc927f32c3910baac06bacc949c984c
         with:
           team: 'moddedjanitors'
           token: ${{ secrets.TOKEN }}
