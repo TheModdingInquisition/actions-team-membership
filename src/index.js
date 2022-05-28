@@ -34,6 +34,6 @@ async function run() {
             core.setFailed('Not permitted.');
         }
     } catch (err) {
-        core.setFailed(`Error: ${err}`);
+        core.setFailed(`Error while trying to establish team membership: ${err}`);
     }
 }
