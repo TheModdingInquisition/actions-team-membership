@@ -30,8 +30,8 @@ async function run() {
             }
         }
 
-        if (core.getInput('exit').toLocaleLowerCase() == 'true' && !permitted) {
-            core.setFailed('Not permitted.');
+        if (core.getInput('exit').toLocaleLowerCase() == 'true' && !teamPresent) {
+            core.setFailed(`Not in team "${team}"`);
         }
     } catch (err) {
         core.setFailed(`Error while trying to establish team membership: ${err}`);
