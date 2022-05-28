@@ -30,7 +30,7 @@ async function run() {
             }
         }
 
-        if (core.getInput('exit').toLocaleLowerCase() == 'true') {
+        if (core.getInput('exit').toLocaleLowerCase() == 'true' && !permitted) {
             core.setFailed('Not permitted.');
         }
     } catch (err) {
