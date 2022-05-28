@@ -22,21 +22,22 @@ const getTeams = function(token, username) {
     const octokit = getOctokit(token);
     const org = !core.getInput('organization') ? context.repo : core.getInput('organization');
 
-    var teams = []
+    var teams = [];
 
     // Pagination
-    var pg = null
+    var pg = null;
+    let data = null;
     do {
-        const data = await octokit.graphql(query, {
+        data = await octokit.graphql(query, {
             "pg": pg,
             "organization": org,
             "userLogins": [username],
             "username": username
-        })
+        });
 
-        teams = teams.concat(data.organization.teams.nodes.map(val => val.name))
+        teams = teams.concat(data.organization.teams.nodes.map(val => val.name));
 
-        cursor = data.organization.teams.pageInfo.endCursor
+        cursor = data.organization.teams.pageInfo.endCursor;
     } while (data.organization.teams.pageInfo.hasNextPage)
     return teams;
 }
