@@ -20,7 +20,7 @@ const query = `query($pg: String, $organization: String!, $userLogins: [String!]
 
 const getTeams = async function(token, username) {
     const octokit = getOctokit(token);
-    const org = !core.getInput('organization') ? context.repo : core.getInput('organization');
+    const org = !core.getInput('organization') ? context.repo.repo : core.getInput('organization');
 
     var teams = [];
 
