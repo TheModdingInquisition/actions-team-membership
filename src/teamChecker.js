@@ -37,7 +37,7 @@ const getTeams = async function(token, username) {
 
         teams = teams.concat(data.organization.teams.nodes.map(val => val.name));
 
-        cursor = data.organization.teams.pageInfo.endCursor;
+        pg = data.organization.teams.pageInfo.endCursor;
     } while (data.organization.teams.pageInfo.hasNextPage)
     return teams;
 }
