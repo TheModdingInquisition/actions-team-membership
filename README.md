@@ -3,7 +3,7 @@ A GitHub action that checks if an user is part of an organization team
 
 # Usage
 ```yaml
-- uses: TheModdingInquisition/actions-team-membership@v1
+- uses: TheModdingInquisition/actions-team-membership@v1.0
   with:
     organization: # optional. Default value ${{ github.repository_owner }} 
                   # Organization to get membership from
