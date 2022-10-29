@@ -27,7 +27,7 @@ outputs:
   permitted:
     description: 'Whether a user is part of the team or not'
 runs:
-  using: 'node12'
+  using: 'node16'
   main: 'dist/index.js'
 branding:
   color: 'red'
