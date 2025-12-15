@@ -1,6 +1,6 @@
 {
   "name": "actions-team-membership",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A GitHub action that checks if an user is part of an organization team",
   "main": "dist/index.js",
   "scripts": {
