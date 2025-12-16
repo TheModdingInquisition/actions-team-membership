@@ -49,7 +49,8 @@ You can use these outputs in subsequent steps of your workflow. For example:
 
 ```yaml
 - name: Check Output
-  run: echo "User is permitted: ${{ steps.check.outputs.permitted }}"
+  run: |
+    echo "User is permitted: ${{ steps.check.outputs.permitted }}"
 ```
 
 ## License
