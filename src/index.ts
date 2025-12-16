@@ -2,16 +2,14 @@ import * as core from '@actions/core';
 import { context, getOctokit } from '@actions/github';
 import { getTeams } from './teamChecker';
 
-run();
-
 async function run() {
     try {
-        const token = core.getInput('token') ? core.getInput('token') : process.env['GITHUB_TOKEN'];
+        const token: string = core.getInput('token') || process.env['GITHUB_TOKEN'] || '';
         const username = context.actor;
         const team = core.getInput('team', {required: true}).toLocaleLowerCase();
 
         const teams = await getTeams(token, username);
-        core.setOutput('teams', teams);
+        core.setOutput('teams', teams.join(','));
         core.info(`User "${username}" is part of the teams: ${teams.join(',')}"`)
 
         const teamPresent = teams.some(te => te.toLocaleLowerCase() == team);
@@ -20,7 +18,7 @@ async function run() {
         if (core.getInput('comment') && !teamPresent) {
             const comment = core.getInput('comment');
             const issueNumber = context.payload.issue?.number;
-            if (comment.length > 0 && issueNumber != 0) {
+            if (comment.length > 0 && issueNumber) {
                 const octokit = getOctokit(token);
                 const { owner, repo } = context.repo;
                 await octokit.rest.issues.createComment({
@@ -35,7 +33,9 @@ async function run() {
         if (core.getInput('exit').toLocaleLowerCase() == 'true' && !teamPresent) {
             core.setFailed(`Not in team "${team}"`);
         }
-    } catch (err) {
-        core.setFailed(`Error while trying to establish team membership: ${err}`);
+    } catch (err: any) {
+        core.setFailed(`Error while trying to establish team membership: ${err.message}`);
     }
 }
+
+run();
