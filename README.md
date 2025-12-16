@@ -1,18 +1,57 @@
 # Actions Team Membership
-A GitHub action that checks if an user is part of an organization team
 
-# Usage
+This GitHub action checks if a user is a member of a specific team within an organization. It's particularly useful for controlling workflow access or permissions based on team membership.
+
+## Usage
+
+To use this action, you'll need to create a workflow file (e.g., `.github/workflows/main.yml`) in your repository. Here is an example of how to set up the workflow:
+
 ```yaml
-- uses: TheModdingInquisition/actions-team-membership@v1.0
-  with:
-    organization: # optional. Default value ${{ github.repository_owner }} 
-                  # Organization to get membership from
-    team: 'my-team' # required. The team to check for
-    token: ****** # required. Personal Access Token with the `read:org` permission
-    comment: 'You seem to not be authorized' # optional. A comment to post if the user is not part of the team.
-                                             # This feature is only applicable in an issue (or PR) context
-    exit: true # optional. If the action should exit if the user is not part of the team. Defaults to true.
+name: Check Team Membership
+
+on:
+  issues:
+    types: [opened, edited]
+  pull_request:
+    types: [opened, edited]
+
+jobs:
+  check_membership:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check if user is in the 'my-team'
+        id: check
+        uses: TheModdingInquisition/actions-team-membership@v1.0
+        with:
+          team: 'my-team'
 ```
-## Outputs
-- teams: an array containing the teams of the user.
-- permitted: whether a user is part of the team or not.
+
+### Inputs
+
+The action supports the following input parameters:
+
+| Name           | Description                                                                                                                            | Default                          | Required |
+|----------------|----------------------------------------------------------------------------------------------------------------------------------------|----------------------------------|----------|
+| `organization` | The organization to check for team membership.                                                                                         | `${{ github.repository_owner }}` | No       |
+| `team`         | The slug of the team to check for.                                                                                                     |                                  | Yes      |
+| `token`        | A personal access token with the `read:org` permission.                                                                                | `${{ github.token }}`            | No       |
+| `comment`      | A comment to post on the issue or pull request if the user is not part of the team. This is only applicable in an issue or PR context. | `null`                           | No       |
+| `exit`         | If set to `true`, the action will fail if the user is not a member of the team.                                                        | `true`                           | No       |
+
+### Outputs
+
+The action produces the following outputs:
+
+-   `teams`: A JSON array containing the list of teams the user belongs to.
+-   `permitted`: A boolean value (`true` or `false`) indicating whether the user is a member of the specified team.
+
+You can use these outputs in subsequent steps of your workflow. For example:
+
+```yaml
+- name: Check Output
+  run: echo "User is permitted: ${{ steps.check.outputs.permitted }}"
+```
+
+## License
+
+This project is licensed under [MIT License](LICENSE)
